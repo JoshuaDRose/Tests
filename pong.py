@@ -15,10 +15,7 @@ copies or substantial portions of the Software.
 """
 
 import os
-from random import randint
-
 import sprite
-
 import pygame
 
 
