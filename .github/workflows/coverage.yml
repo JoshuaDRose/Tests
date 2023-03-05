@@ -1,9 +1,18 @@
 on: push
 
+
 jobs:
-  run_tests:
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run script file
-      run: make test
+
+    run_tests:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7.4
+          architecture: x64
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - uses: actions/checkout@v2
+      - name: Run script file
+        run: make test
