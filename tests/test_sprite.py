@@ -15,8 +15,6 @@ copies or substantial portions of the Software.
 """
 
 import unittest
-from unittest.mock import Mock, MagicMock
-from unittest.mock import patch
 import pygame
 import sprite
 
@@ -29,7 +27,9 @@ class TestSprite(unittest.TestCase):
         self.init()
         self.display = pygame.display.set_mode((800, 800), 0, 32)
         self.empty_group = pygame.sprite.Group()
-        self.sprite = sprite.Sprite(pygame.math.Vector2(50, 50), self.empty_group)
+        self.sprite = sprite.Sprite(
+                pygame.math.Vector2(50, 50),
+                self.empty_group)
 
     def init(self):
         """ Assert all libs are initialized """
@@ -66,4 +66,3 @@ class TestSprite(unittest.TestCase):
         """ Test each function has been called individually """
         self.sprite.update()
         self.test_update_collision_box()
-
