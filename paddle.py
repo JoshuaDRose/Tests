@@ -42,4 +42,3 @@ class Paddle(sprite.Sprite):
             if self.position.y > 800:
                 self.direction.y = 1
         self.update_collision_box()
-
