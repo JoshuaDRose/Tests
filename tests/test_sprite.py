@@ -34,29 +34,27 @@ class TestSprite(unittest.TestCase):
     def init(self):
         """ Assert all libs are initialized """
         pygame.display.init()
-        if not pygame.base.get_init():
-            pygame.base.init()
         if pygame.display.get_init():
-            self.assertEqual(pygame.display.get_init(), True)
+            assert pygame.display.get_init() == True
         if pygame.base.get_init():
-            self.assertEqual(pygame.base.get_init(), True)
+            assert pygame.base.get_init() == True
 
     def assert_between(self, value: int, _min: int, _max: int) -> None:
         """Description: Fail if value is not between min and max (inclusive)"""
-        self.assertGreaterEqual(value, _min)
-        self.assertLessEqual(value, _max)
+        assert value <= _max
+        assert value >= _min
 
     def test_sprite_constructor_size(self):
         """Description: Fail if not in given range"""
-        self.assert_between(self.sprite.size, 5, 10)
+        assert (self.sprite.size in range(5, 11)) == True
 
     def test_update_collision_box(self) -> None:
         """ Test that bounding box applies to position """
         self.sprite.position.x += 5
         self.sprite.position.y += 5
         self.sprite.update_collision_box()
-        self.assertEqual(self.sprite.rect.x, round(self.sprite.position.x))
-        self.assertEqual(self.sprite.rect.y, round(self.sprite.position.y))
+        assert self.sprite.rect.x == round(self.sprite.position.x)
+        assert self.sprite.rect.y == round(self.sprite.position.y)
 
     def test_draw_surface(self) -> None:
         """ Test if surface has been drawn """
@@ -66,7 +64,7 @@ class TestSprite(unittest.TestCase):
         """ Test alpha is applied to surface on draw """
         self.sprite.alpha = 128
         self.sprite.draw(self.display)
-        self.assertEqual(self.sprite.image.get_alpha(), self.sprite.alpha)
+        assert self.sprite.image.get_alpha() == self.sprite.alpha
 
     def test_update_method(self):
         """ Test each function has been called individually """
