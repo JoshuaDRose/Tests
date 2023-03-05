@@ -7,3 +7,5 @@ build/
 htmlcov/
 htmlcov.egg-info
 __pycache__/
+!res/coverage.html
+./coverage.html
