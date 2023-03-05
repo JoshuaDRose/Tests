@@ -24,25 +24,22 @@ class TestSprite(unittest.TestCase):
 
     def setUp(self):
         """Description: Setup constants to be used as test data"""
-        self.init()
         self.display = pygame.display.set_mode((800, 800), 0, 32)
         self.empty_group = pygame.sprite.Group()
         self.sprite = sprite.Sprite(
                 pygame.math.Vector2(50, 50),
                 self.empty_group)
 
-    def init(self):
-        """ Assert all libs are initialized """
-        pygame.display.init()
-        if pygame.display.get_init():
-            assert pygame.display.get_init() == True
-        if pygame.base.get_init():
-            assert pygame.base.get_init() == True
-
     def assert_between(self, value: int, _min: int, _max: int) -> None:
         """Description: Fail if value is not between min and max (inclusive)"""
-        assert value <= _max
-        assert value >= _min
+        self.assertGreaterEqual(value, _min)
+        self.assertLessEqual(value, _max)
+
+    def test_assert_between(self):
+        x = 2
+        y = 10
+        z = 5
+        self.assert_between(z, x, y)
 
     def test_sprite_constructor_size(self):
         """Description: Fail if not in given range"""
