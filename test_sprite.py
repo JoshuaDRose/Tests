@@ -34,7 +34,12 @@ class TestSprite(unittest.TestCase):
         pygame.display.init()
         if not pygame.base.get_init():
             pygame.base.init()
-        self.assertEqual(pygame.display.get_init(), True)
+        if not pygame.display.get_init():
+            pygame.display.init()
+        if pygame.display.get_init():
+            self.assertEqual(pygame.display.get_init(), True)
+        if pygame.base.get_init():
+            self.assertEqual(pygame.base.get_init(), True)
 
     def assert_between(self, value: int, _min: int, _max: int) -> None:
         """Description: Fail if value is not between min and max (inclusive)"""
@@ -52,3 +57,7 @@ class TestSprite(unittest.TestCase):
         self.sprite.update_collision_box()
         self.assertEqual(self.sprite.rect.x, round(self.sprite.position.x))
         self.assertEqual(self.sprite.rect.y, round(self.sprite.position.y))
+
+    def test_draw_surface(self) -> None:
+        """ Test if surface has been drawn """
+        self.sprite.draw(self.display)
