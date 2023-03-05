@@ -8,4 +8,4 @@ test:
 	@coverage-badge -o ./res/coverage.svg
 
 lint:
-	flake8 *.py
+	@flake8 * --exclude README.md,Makefile

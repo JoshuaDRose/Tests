@@ -16,7 +16,7 @@ copies or substantial portions of the Software.
 
 import unittest
 import pygame
-from pong import Sprite
+import sprite
 
 
 class TestSprite(unittest.TestCase):
@@ -27,15 +27,13 @@ class TestSprite(unittest.TestCase):
         self.init()
         self.display = pygame.display.set_mode((800, 800), 0, 32)
         self.empty_group = pygame.sprite.Group()
-        self.sprite = Sprite(pygame.math.Vector2(50, 50), self.empty_group)
+        self.sprite = sprite.Sprite(pygame.math.Vector2(50, 50), self.empty_group)
 
     def init(self):
         """ Assert all libs are initialized """
         pygame.display.init()
         if not pygame.base.get_init():
             pygame.base.init()
-        if not pygame.display.get_init():
-            pygame.display.init()
         if pygame.display.get_init():
             self.assertEqual(pygame.display.get_init(), True)
         if pygame.base.get_init():
