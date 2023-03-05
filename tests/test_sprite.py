@@ -43,7 +43,7 @@ class TestSprite(unittest.TestCase):
 
     def test_sprite_constructor_size(self):
         """Description: Fail if not in given range"""
-        assert (self.sprite.size in range(5, 11)) == True
+        assert (self.sprite.size in range(5, 11))
 
     def test_update_collision_box(self) -> None:
         """ Test that bounding box applies to position """
@@ -73,7 +73,7 @@ class TestSprite(unittest.TestCase):
         self.sprite.alpha = 5
         self.assertEqual(self.sprite.visible, True)
         self.sprite.alpha = 0
-        if self.sprite.visible == False:
+        if not self.sprite.visible:
             self.assertEqual(self.sprite.visible, False)
         del self.sprite.visible
         with self.assertRaises(AttributeError) as _:
@@ -86,5 +86,3 @@ class TestSprite(unittest.TestCase):
         del self.sprite.alpha
         with self.assertRaises(AttributeError) as _:
             print(self.sprite.alpha)
-
-
