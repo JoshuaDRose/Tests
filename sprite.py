@@ -19,6 +19,7 @@ class Sprite(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = round(self.position.x)
         self.rect.y = round(self.position.y)
+        self.alpha = 255
 
     def update_collision_box(self) -> None:
         """Update collision box"""
@@ -27,6 +28,7 @@ class Sprite(pygame.sprite.Sprite):
 
     def draw(self, surface: pygame.surface.Surface):
         """ Draw sprite to surface """
+        self.image.set_alpha(self.alpha)
         surface.blit(self.image, (self.rect.x, self.rect.y))
 
     def update(self) -> None:

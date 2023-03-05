@@ -62,6 +62,12 @@ class TestSprite(unittest.TestCase):
         """ Test if surface has been drawn """
         self.sprite.draw(self.display)
 
+    def test_draw_set_alpha(self):
+        """ Test alpha is applied to surface on draw """
+        self.sprite.alpha = 128
+        self.sprite.draw(self.display)
+        self.assertEqual(self.sprite.image.get_alpha(), self.sprite.alpha)
+
     def test_update_method(self):
         """ Test each function has been called individually """
         self.sprite.update()
