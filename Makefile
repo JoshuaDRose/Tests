@@ -9,3 +9,6 @@ export:
 
 lint:
 	flake8 *.py
+
+codecov_badge:
+	coverage-badge > res/coverage.html
