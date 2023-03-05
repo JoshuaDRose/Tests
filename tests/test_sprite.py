@@ -15,6 +15,8 @@ copies or substantial portions of the Software.
 """
 
 import unittest
+from unittest.mock import Mock, MagicMock
+from unittest.mock import patch
 import pygame
 import sprite
 
@@ -59,3 +61,9 @@ class TestSprite(unittest.TestCase):
     def test_draw_surface(self) -> None:
         """ Test if surface has been drawn """
         self.sprite.draw(self.display)
+
+    def test_update_method(self):
+        """ Test each function has been called individually """
+        self.sprite.update()
+        self.test_update_collision_box()
+

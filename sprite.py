@@ -28,3 +28,7 @@ class Sprite(pygame.sprite.Sprite):
     def draw(self, surface: pygame.surface.Surface):
         """ Draw sprite to surface """
         surface.blit(self.image, (self.rect.x, self.rect.y))
+
+    def update(self) -> None:
+        """ Call update functions individually """
+        self.update_collision_box()
