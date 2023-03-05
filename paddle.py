@@ -23,3 +23,23 @@ class Paddle(sprite.Sprite):
     def __init__(self, position: pygame.math.Vector2,
                  group: pygame.sprite.Group):
         super().__init__(position, group)
+        self.image = pygame.Surface((20, 100))
+        self.rect = self.image.get_rect()
+        self.update_collision_box()
+        pygame.draw.rect(self.image,
+                         (255, 255, 255),
+                         self.rect,
+                         False,
+                         self.rect.width // 2)
+        self.direction = pygame.math.Vector2(0, 0)
+
+    def update(self):
+        keypress = pygame.key.get_pressed()
+        if keypress[pygame.K_w]:
+            if self.position.y > 0:
+                self.direction.y = -1
+        if keypress[pygame.K_s]:
+            if self.position.y > 800:
+                self.direction.y = 1
+        self.update_collision_box()
+

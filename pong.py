@@ -14,8 +14,9 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 """
 
+import sys
 import os
-import sprite
+import paddle
 import pygame
 
 
@@ -27,6 +28,28 @@ def get_current_directory() -> str:
 if not pygame.display.get_init():
     pygame.display.init()
 
+clock = pygame.time.Clock()
 display = pygame.display.set_mode((800, 800), 0, 32)
-sprites = pygame.sprite.Group()
-sprite = sprite.Sprite(pygame.math.Vector2(100, 100), sprites)
+paddles = pygame.sprite.Group()
+paddle = paddle.Paddle(pygame.math.Vector2(0, 0), paddles)
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    display.fill((0, 0, 0))
+
+    for paddle in paddles:
+        if paddle.direction.y:
+            paddle.position.y += 1
+        elif paddle.direction.y:
+            paddle.position.y -= 1
+        paddle.draw(display)
+
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()
