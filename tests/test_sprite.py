@@ -67,3 +67,24 @@ class TestSprite(unittest.TestCase):
         """ Test each function has been called individually """
         self.sprite.update()
         self.test_update_collision_box()
+
+    def test_visible_property(self):
+        """ Test the visible property """
+        self.sprite.alpha = 5
+        self.assertEqual(self.sprite.visible, True)
+        self.sprite.alpha = 0
+        if self.sprite.visible == False:
+            self.assertEqual(self.sprite.visible, False)
+        del self.sprite.visible
+        with self.assertRaises(AttributeError) as _:
+            print(self.sprite.visible)
+
+    def test_alpha_property(self):
+        """ Test the visible property """
+        self.sprite.alpha = 5
+        self.assertEqual(self.sprite.alpha, 5)
+        del self.sprite.alpha
+        with self.assertRaises(AttributeError) as _:
+            print(self.sprite.alpha)
+
+

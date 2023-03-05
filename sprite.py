@@ -19,7 +19,9 @@ class Sprite(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = round(self.position.x)
         self.rect.y = round(self.position.y)
-        self.alpha = 255
+        self._alpha = 255
+        self._visible = self.alpha != 0
+        self.visible = True
 
     def update_collision_box(self) -> None:
         """Update collision box"""
@@ -34,3 +36,31 @@ class Sprite(pygame.sprite.Sprite):
     def update(self) -> None:
         """ Call update functions individually """
         self.update_collision_box()
+
+    @property
+    def alpha(self):
+        return self._alpha
+
+    @alpha.setter
+    def alpha(self, value):
+        self._alpha = value
+
+    @alpha.deleter
+    def alpha(self):
+        del self._alpha
+
+    @property
+    def visible(self):
+        return self._visible
+
+    @visible.getter
+    def visible(self):
+        return self._visible > 0
+
+    @visible.setter
+    def visible(self, value):
+        self._visible = value
+
+    @visible.deleter
+    def visible(self):
+        del self._visible
