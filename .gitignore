@@ -1,0 +1,9 @@
+tox.ini
+pylint.rc
+.tox/
+.mypy_cache/
+.pytest_cache/
+build/
+htmlcov/
+htmlcov.egg-info
+__pycache__/
