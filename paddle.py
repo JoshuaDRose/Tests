@@ -19,6 +19,7 @@ import sprite
 
 
 class Paddle(sprite.Sprite):
-    def __init__(self, position: pygame.math.Vector2, group: pygame.sprite.Group):
+    """ Paddle can hit the ball and move up and down """
+    def __init__(self, position: pygame.math.Vector2,
+                 group: pygame.sprite.Group):
         super().__init__(position, group)
-
